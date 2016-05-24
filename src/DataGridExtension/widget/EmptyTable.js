@@ -1,10 +1,10 @@
 //----------------------------------------------------------------------
-// Empty table 
+// Empty table
 //----------------------------------------------------------------------
 define(["dojo/_base/declare", "dojo/aspect"], function(declare, aspect) {
     "user strict";
     return declare(null, {
-        mixins: [mendix.addon._Contextable],
+        mixins: [mxui.mixin._Contextable],
 
         emptyButton: null,
 
@@ -17,7 +17,7 @@ define(["dojo/_base/declare", "dojo/aspect"], function(declare, aspect) {
         },
 
         // Templated variable, TODO remove template dependency
-        // emptyTableHolder        
+        // emptyTableHolder
 
         checkConfigEmptyTable: function() {
             if ((this.showAsButton === "Button" || this.showAsButton === "Link") && !this.onclickmf)
@@ -40,13 +40,13 @@ define(["dojo/_base/declare", "dojo/aspect"], function(declare, aspect) {
                 if (gridSize === 0) {
                     if (this.hideEmptyTable === true)
                         dojo.style(this.grid.gridHeadNode, "display", "none");
-                    if (this.showAsButton !== "Disabled") // show empty table info    
+                    if (this.showAsButton !== "Disabled") // show empty table info
                         this.showButton();
 
                 } else {
                     if (this.hideEmptyTable === true)
                         dojo.style(this.grid.gridHeadNode, "display", "table-header-group");
-                    if (this.showAsButton !== "Disabled") // show empty table info  
+                    if (this.showAsButton !== "Disabled") // show empty table info
                         this.hideButton();
                 }
             }

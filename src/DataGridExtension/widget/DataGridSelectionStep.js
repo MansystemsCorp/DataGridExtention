@@ -4,16 +4,16 @@
     ========================
     @file      : DataGridSelectionStep.js
     @version   : 1.1
-    @author    : Andries Smit 
+    @author    : Andries Smit
     @date      : 20-12-2014
     @copyright : Flock of Birds International BV
 
     Change log
     ========================
     ISSUES:
-    
+
     TODO:
-    
+
     DONE:
     Fix datasource selection in case a page is loaded mulitple times (result in cashed objects)
     Mendix 5.11 selection attribute changed, cause wrong/ no selection on refresh.
@@ -22,7 +22,7 @@
 require(["dojo", "dijit", "dojo/NodeList-traverse"], function (dojo, dijit) {
     "use strict";
     var widget = {
-        mixins: [mendix.addon._Contextable],
+        mixins: [mxui.mixin._Contextable],
 
         inputargs: {
             buttonPrevNext: "Next",
@@ -44,7 +44,7 @@ require(["dojo", "dijit", "dojo/NodeList-traverse"], function (dojo, dijit) {
             try {
                 // get the enclosing dataview
                 this.dataView = dijit.byNode(dojo.query(this.domNode).closest(".mx-dataview")[0]);
-                // on refresh new widgets are generated in same window, so use latest.                
+                // on refresh new widgets are generated in same window, so use latest.
                 var gridNodes = dojo.query('[mxid="' + this.dataView.datasource.contextsource + '"]'),
                     classes = this.class;
                 this.grid = dijit.byNode(gridNodes[0]);
@@ -96,7 +96,7 @@ require(["dojo", "dijit", "dojo/NodeList-traverse"], function (dojo, dijit) {
                     } else {
                         dojo.removeAttr(this.button.domNode, "disabled");
                     }
-                } else { // Next Button                    
+                } else { // Next Button
                     if (this.isLastRowSelected()) {
                         dojo.setAttr(this.button.domNode, "disabled", "disabled");
                     } else {
@@ -105,20 +105,20 @@ require(["dojo", "dijit", "dojo/NodeList-traverse"], function (dojo, dijit) {
                 }
             }
         },
-        
+
         isLastRowSelected: function(){
             var rowsLeft = this.grid._dataSource._setsize - this.grid._dataSource._offset - 1;
-            if (rowsLeft - this.getSelectedIndex() <= 0) 
+            if (rowsLeft - this.getSelectedIndex() <= 0)
                 return true;
             else
                 return false;
-                    
+
         },
-        
+
         isFirstRowSelected: function(){
-            if (this.getSelectedIndex() <= 0 && this.grid._dataSource._offset === 0) 
+            if (this.getSelectedIndex() <= 0 && this.grid._dataSource._offset === 0)
                 return true;
-            else 
+            else
                 return false;
         },
 
@@ -143,7 +143,7 @@ require(["dojo", "dijit", "dojo/NodeList-traverse"], function (dojo, dijit) {
             var rowsLeft = this.grid._dataSource._setsize - this.grid._dataSource._offset;
             for (var i = 0; i < this.grid._gridRowNodes.length && i < rowsLeft; i++) {
                 if (dojo.hasClass(this.grid._gridRowNodes[i], "selected")) {
-                    return i; //find selected            
+                    return i; //find selected
                 }
             }
             return -1; // no selection
@@ -183,13 +183,13 @@ require(["dojo", "dijit", "dojo/NodeList-traverse"], function (dojo, dijit) {
                 }
             }
         },
-        
+
         setSelectedGuid: function(guid){
             if(this.grid.hasOwnProperty("_selectedGuids")){
-                this.grid._selectedGuids = [guid]; // before mx 5.11 
+                this.grid._selectedGuids = [guid]; // before mx 5.11
             } else {
                 this.grid.selection = [guid];
-            }  
+            }
         },
 
         shareSelected: function(){
@@ -209,7 +209,7 @@ require(["dojo", "dijit", "dojo/NodeList-traverse"], function (dojo, dijit) {
                     selectedIndex++; // next index
                     var nextRow = rows[selectedIndex];
                     var guid = this.grid.domData(nextRow, "mendixguid");
-                    this.setSelectedGuid(guid); // set mx-grid property 
+                    this.setSelectedGuid(guid); // set mx-grid property
                     this.grid.selectRow(nextRow);
                     this.shareSelected();
                     this.checkEnableButtons();

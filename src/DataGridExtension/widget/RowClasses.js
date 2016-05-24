@@ -4,7 +4,7 @@
 define(["dojo/_base/declare", "dojo/aspect"], function(declare, aspect) {
     "user strict";
     return declare(null, {
-        mixins: [mendix.addon._Contextable],
+        mixins: [mxui.mixin._Contextable],
 
         rowClassTable: [],
 
@@ -16,7 +16,7 @@ define(["dojo/_base/declare", "dojo/aspect"], function(declare, aspect) {
         checkConfigRowClasses: function() {
             if (this.rowClassMapping.length > 0 && !this.rowClassAttr)
                 this.showError("Row Class mapping needs an entity and attribute.");
-            // dataGridEntity is only required to for the widget to select an attribute of the context. 
+            // dataGridEntity is only required to for the widget to select an attribute of the context.
             // So we  need to check that they are of the same type.
             if (this.dataGridEntity && this.dataGridEntity !== this.grid.entity)
                 this.showError("The Row Grid Entity should be the same as the grid.");
