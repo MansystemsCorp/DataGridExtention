@@ -86,7 +86,17 @@ require(["DataGridExtension/widget/PagingButtons", "DataGridExtension/widget/Emp
 
                 try
                 {
-                    var gridNode = document.querySelector('.mx-name-' + this.targetDataGridName);
+                    var queryNode = this.domNode.parentNode;
+                    var gridNode;
+
+                    while (!gridNode) {
+                      gridNode = queryNode.querySelector('.mx-name-' + this.targetDataGridName);
+                      if (queryNode === queryNode.parentNode) {
+                        break;
+                      }
+                      queryNode = queryNode.parentNode;
+                    }
+
                     if( gridNode )
                         this.grid = dijit.byNode( gridNode );
                     if (this.grid === null) {
@@ -118,9 +128,15 @@ require(["DataGridExtension/widget/PagingButtons", "DataGridExtension/widget/Emp
                 }, msg));
             },
 
-            destroy: function() {
-                //is there anything left to destroy?
-            }
+            // destroy: function() {
+            //     //is there anything left to destroy?
+            // },
+
+            // mxui.widget._WidgetBase.uninitialize is called when the widget is destroyed. Implement to do special tear-down work.
+            uninitialize: function() {
+              //logger.debug(this.id + ".uninitialize");
+                // Clean up listeners, helper objects, etc. There is no need to remove listeners added with this.connect / this.subscribe / this.own.
+            },
 
         };
         mxui.widget.declare("DataGridExtension.widget.DataGridExtension", widget);
