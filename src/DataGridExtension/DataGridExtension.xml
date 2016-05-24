@@ -5,6 +5,11 @@
 	<icon>iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3gUGCRYzpfLoHQAAAF1JREFUWMPtlrENACAIBF/jSOw/gTthrwmxwFB4Xxu5IFyUfk+T5JUAvboDAIxtHqL4i3M8AQDlAJgw1wNz66aFd+IBAI41vBvCmVTZzi1wPHDpgeIZQEQA8B8gyVnK4xQ2A7reWgAAAABJRU5ErkJggg==
     </icon>
 	<properties>
+		<property key="targetDataGridName" type="string" required="true" defaultValue="" >
+			<caption>Target Data Grid Name</caption>
+			<category>General</category>
+			<description>The Common/Name property of the target Data Grid</description>
+		</property>
 		<property key="hasFlexHeader" type="boolean" required="true" defaultValue="false">
 			<caption>Flex Header</caption>
 			<category>Columns</category>
@@ -124,7 +129,7 @@
 				</property>
 			</properties>
 		</property>
-		
+
                 <property key="inlineButtons" type="object" isList="true" required="false">
 			<caption>Inline Button</caption>
 			<category>Inline Button</category>
@@ -144,7 +149,7 @@
                                         <caption>Cell Value Caption</caption>
                                         <category>Appearance</category>
                                         <description>When set the value of the cell will be used as caption of the button/link, when cell is empty button is hidden</description>
-                                </property>                                     
+                                </property>
                                 <property key="icon" type="image" required="false">
                                         <caption>Image</caption>
                                         <category>Appearance</category>
@@ -191,7 +196,7 @@
                                         <translations>
                                             <translation lang="en_US">Proceed</translation>
                                             <translation lang="nl_NL">Doorgaan</translation>
-                                        </translations>                                        
+                                        </translations>
                                 </property>
 				<property key="conCancel" type="translatableString" required="false">
                                         <caption>Cancel button caption</caption>
@@ -200,7 +205,7 @@
                                         <translations>
                                             <translation lang="en_US">Cancel</translation>
                                             <translation lang="nl_NL">Annuleren</translation>
-                                        </translations>      
+                                        </translations>
                                 </property>
                                 <property key="cssClass" type="string" required="false">
                                         <caption>css Class</caption>
@@ -211,7 +216,7 @@
                                         <caption>Style</caption>
                                         <category>Common</category>
                                         <description>Html style attribute</description>
-                                </property>                      
+                                </property>
 			</properties>
 		</property>
 	</properties>

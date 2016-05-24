@@ -9,6 +9,7 @@ require(["DataGridExtension/widget/PagingButtons", "DataGridExtension/widget/Emp
             templateString: template,
 
             inputargs: {
+                targetDataGridName : ""
                 // All parameters are defined in the mixed in objects
             },
 
@@ -18,14 +19,14 @@ require(["DataGridExtension/widget/PagingButtons", "DataGridExtension/widget/Emp
             // Date: 25 March 2015
             // Author:  Andries Smit
             // Company: Flock of Birds
-            // 
-            // ISSUES:        
+            //
+            // ISSUES:
             // When new column are shown, the order of the column is not stored as it is displayed
-            // 
+            //
             // TODO:
             // Check other error cases
-            // 
-            // FUTURE:   
+            //
+            // FUTURE:
             // Test other browser versions
             // Distribute width over all columns after column is added/removed in the modeller.
             // Add responsive columns support in flex header feature.
@@ -34,10 +35,10 @@ require(["DataGridExtension/widget/PagingButtons", "DataGridExtension/widget/Emp
             // Row class text to css class conversion should remove leading digits too
             // Disable move when there is only one column left.
             // Allow multiple inlinebuttons in one column
-            // Add further support for Template Grid ( hide un-usable buttons )        // 
-            // 
+            // Add further support for Template Grid ( hide un-usable buttons )        //
+            //
             // RESOLVED:
-            // DONE test across browsers. Safari 5.1.7 Chrome 33, IE 11,(emulate 10, 9 ok, 8fails), FF 27 ok, FF3.6 fails 
+            // DONE test across browsers. Safari 5.1.7 Chrome 33, IE 11,(emulate 10, 9 ok, 8fails), FF 27 ok, FF3.6 fails
             // FIXED Display Names are not updated when changed in modeller
             // FIXED Reset will not reset the sort order
             // DONE Added App store Empty table gird functions
@@ -49,7 +50,7 @@ require(["DataGridExtension/widget/PagingButtons", "DataGridExtension/widget/Emp
             // DONE columns visibility can be changed with submenu, hence modeller 0 width columns can now made visible
             // DONE give warning message if last column is hidden via column menu
             // DONE move template string to html file
-            // DONE check if the configuration is valid. 
+            // DONE check if the configuration is valid.
             // FIXED removed required "Row Class Attribute" form context XML
             // FIXED hide controlbar buttons of Microflows of type "selection" (single select data grid)
             // FIXED Shared array conflicting with multiple widgets in a page (toolbar buttons)
@@ -58,7 +59,7 @@ require(["DataGridExtension/widget/PagingButtons", "DataGridExtension/widget/Emp
             // FIXED When paging is hidden in modeller and dynamic hiding is enabled resulted in an error
             // DONE empty table header can be hidden without showing a button.
             // FIXED Mx5.4 Grid buttons where no working well; Mx renamed eventGridRowClicked to eventItemClicked in datagrid.
-            // DONE Handler refresh of grid buttons on double click        
+            // DONE Handler refresh of grid buttons on double click
             // FIXED When conditional visibility is set via the modeller the dgExtension overwrites, this should not happen.
             // DONE Error configuration feedback in UI
             // DONE support Non Persistable Entities in Row Class Mapping.
@@ -69,7 +70,7 @@ require(["DataGridExtension/widget/PagingButtons", "DataGridExtension/widget/Emp
             // DONE Button Toolbar conditional visibility: Select All button shows when 0 records are in the DataGrid, hide on all rows are selected
             // FIXED missing include NodeList-traverse
             // FIXED Detection Reference Set selector, broken by new 5.7 class for testing.
-            // ADDED support for template grid; empty message and dynamic show of paging 
+            // ADDED support for template grid; empty message and dynamic show of paging
             // FIXED Broken compare check for stored Flex Columns in Mx5.7 (no settings for column attr anymore )
             // FIXED Broken sorting in Mx5.7 (th domData, changed from key to, index and use of _visibleColumns) replaced buildGridBody only compatible with mx5.7 and up
             // DONE On close header menu close sub menus.
@@ -81,14 +82,15 @@ require(["DataGridExtension/widget/PagingButtons", "DataGridExtension/widget/Emp
 
             postCreate: function() {
                 // post create function of dojo widgets.
-                // TODO Check if objects are not accidently shared by object. 
+                // TODO Check if objects are not accidently shared by object.
 
-                try {
-                    var colindex = this.domNode.parentNode.cellIndex;
-                    if(this.domNode.parentNode.parentNode.previousSibling)
-                        this.grid = dijit.findWidgets(this.domNode.parentNode.parentNode.previousSibling.cells[colindex])[0];
+                try
+                {
+                    var gridNode = document.querySelector('.mx-name-' + this.targetDataGridName);
+                    if( gridNode )
+                        this.grid = dijit.byNode( gridNode );
                     if (this.grid === null) {
-                        this.showError("Error: unable to find grid. Is the widget placed in a row underneath the grid?");
+                        this.showError("Error: unable to find grid by name '"+this.targetDataGridName+"' . Is the widget placed in a row underneath the grid?");
                         this.loaded();
                         return;
                     }
@@ -124,5 +126,5 @@ require(["DataGridExtension/widget/PagingButtons", "DataGridExtension/widget/Emp
         mxui.widget.declare("DataGridExtension.widget.DataGridExtension", widget);
         mxui.widget.declare("DataGridExtension.widget.DataGridExtensionNoContext", widget);
     });
-    
+
 //@ sourceURL=widgets/DataGridExtension/widget/DataGridExtension.js
