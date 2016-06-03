@@ -26,8 +26,8 @@
       <file leaf-file-name="RowClasses.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/DataGridExtension/widget/RowClasses.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="691">
-              <caret line="53" column="149" selection-start-line="53" selection-start-column="149" selection-end-line="53" selection-end-column="149" />
+            <state relative-caret-position="663">
+              <caret line="58" column="84" selection-start-line="58" selection-start-column="84" selection-end-line="58" selection-end-column="84" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -234,12 +234,12 @@
       <option name="presentableId" value="Default" />
       <updated>1464770216709</updated>
       <workItem from="1464770218007" duration="955000" />
-      <workItem from="1464957746495" duration="1593000" />
+      <workItem from="1464957746495" duration="2812000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2548000" />
+    <option name="totallyTimeSpent" value="3767000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -271,10 +271,28 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/DataGridExtension/widget/FlexColumns.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DataGridExtension/widget/DataGridExtension.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/DataGridExtension/widget/RowClasses.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="691">
-          <caret line="53" column="149" selection-start-line="53" selection-start-column="149" selection-end-line="53" selection-end-column="149" />
+        <state relative-caret-position="663">
+          <caret line="58" column="84" selection-start-line="58" selection-start-column="84" selection-end-line="58" selection-end-column="84" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>

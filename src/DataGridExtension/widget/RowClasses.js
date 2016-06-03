@@ -1,7 +1,7 @@
 //----------------------------------------------------------------------
 // Dynamic Row Classes
 //----------------------------------------------------------------------
-define(["dojo/_base/declare", "dojo/aspect"], function(declare, aspect) {
+define(["dojo/_base/declare", "dojo/aspect", "dojo/dom-class", "dojo/dom-attr"], function(declare, aspect, domClass, domAttr) {
     "user strict";
     return declare(null, {
         mixins: [mxui.mixin._Contextable],
@@ -53,7 +53,12 @@ define(["dojo/_base/declare", "dojo/aspect"], function(declare, aspect) {
                             } else {
                                 value = value.toString().replace(/[^\w_-]/gi, ''); // remove all special characters, TODO: remove leading digits too.
                             }
-                            dojo.attr(tr, "class", value);
+                            // first remove previous class
+                            var customRowClass = domAttr.get(tr, "customRowClass", value);
+                            domClass.remove(tr, customRowClass);
+                            // now add the new class and save it for the next change
+                            domClass.add(tr, value);
+                            domAttr.set(tr, "customRowClass", value);
                         }
                         originalMethod.apply(this, arguments);
                     };
