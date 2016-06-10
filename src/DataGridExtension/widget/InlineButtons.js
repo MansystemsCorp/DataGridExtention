@@ -1,7 +1,7 @@
 //----------------------------------------------------------------------
 // Inline Buttons
 //----------------------------------------------------------------------
-define(["dojo/_base/declare", "dojo/aspect"], function(declare, aspect) {
+define(["dojo/_base/declare", "dojo/aspect", "dojo/_base/event", "dojo/on"], function(declare, aspect, event, on) {
     "user strict";
     return declare(null, {
 
@@ -51,7 +51,7 @@ define(["dojo/_base/declare", "dojo/aspect"], function(declare, aspect) {
                                 var td = gridMatrixRow[col];
                                 if (!self.inlineButtons[i].valueCaption || self.inlineButtons[i].valueCaption && td.firstChild.innerHTML !== "&nbsp;") {
                                     var img = td.querySelector('img');
-                                    var button = new mxui.widget.Button({
+                                    var button = new mxui.widget.ActionButton({
                                         caption: self.inlineButtons[i].valueCaption ? td.firstChild.innerHTML : self.inlineButtons[i].caption,
                                         iconUrl: (img && img.src && img.src.match( /[^\/]*\/\/[^\/]*(\/.*)/ )[1]) || self.inlineButtons[i].icon,
                                         // Why does this onlick not work? Work arround with liveConnect
@@ -59,7 +59,20 @@ define(["dojo/_base/declare", "dojo/aspect"], function(declare, aspect) {
                                         btnSetting: self.inlineButtons[i],
                                         renderType: self.inlineButtons[i].buttonStyle.toLowerCase(),
                                         cssStyle: self.inlineButtons[i].ccsStyles, //+ " " + self.inlineButtons[i].class
-                                        cssClasses: classes
+                                        cssClasses: classes,
+                                        // action: {
+                                        //     microflow: {
+                                        //         allowedRoles: ["Administrator", "Dynamic_ProjectAdministrator", "Dynamic_ProjectTestDesigner", "User", "MxAdmin"],
+                                        //         name: 'UserInterface.ShowInfoDialog',
+                                        //         //applyTo: 'none',
+                                        //         //confirmation: {
+                                        //         //    cancel: '',
+                                        //         //    proceed: '',
+                                        //         //    question: '',
+                                        //         //},
+                                        //         validate: 'view',
+                                        //     },
+                                        // }
                                     });
                                     var dataContainer = td.firstChild;
                                     dojo.addClass(td, "inlineButtonContainer");
@@ -71,20 +84,27 @@ define(["dojo/_base/declare", "dojo/aspect"], function(declare, aspect) {
                                     } else {
                                         dataContainer.appendChild(button.domNode);
                                     }
+                                    // attach event handler
+                                    //on(button.domNode, "click", dojo.hitch(self, self.onclickEventInline));
+                                    // for some reason it doesn't work if I do button.domNode.addEventListener
+                                    dojo.byId(button.id).addEventListener("click", dojo.hitch(self, self.onclickEventInline));
                                 }
                             }
                         }
                     }
                 };
             });
-            self.grid.liveConnect(self.grid.gridBodyNode, "onclick", {
-                ".mx-button": dojo.hitch(self, self.onclickEventInline),
-                ".mx-link": dojo.hitch(self, self.onclickEventInline)
-            });
+            //self.grid.liveConnect(self.grid.gridBodyNode, "onclick", {
+            //    ".mx-button": dojo.hitch(self, self.onclickEventInline),
+            //    ".mx-link": dojo.hitch(self, self.onclickEventInline)
+            //});
 
         },
 
         onclickEventInline: function(evt) {
+            // stop propagation of event, so we don't trigger the default action of the datagrid row
+            event.stop(evt);
+
             var tdNode = dojo.query(evt.target).closest("td")[0];
             var btnNode = dojo.query(evt.target).closest(".mx-link, .mx-button")[0];
             var btnSetting = dijit.byNode(btnNode).btnSetting;
