@@ -89,7 +89,7 @@ require(["DataGridExtension/widget/PagingButtons", "DataGridExtension/widget/Emp
                     var queryNode = this.domNode.parentNode;
                     var gridNode;
 
-                    while (!gridNode) {
+                    while (!gridNode && queryNode) {
                       gridNode = queryNode.querySelector('.mx-name-' + this.targetDataGridName);
                       if (queryNode === queryNode.parentNode) {
                         break;

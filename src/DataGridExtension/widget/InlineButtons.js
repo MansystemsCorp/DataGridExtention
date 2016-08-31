@@ -51,7 +51,7 @@ define(["dojo/_base/declare", "dojo/aspect", "dojo/_base/event", "dojo/on"], fun
                                 var td = gridMatrixRow[col];
                                 if (!self.inlineButtons[i].valueCaption || self.inlineButtons[i].valueCaption && td.firstChild.innerHTML !== "&nbsp;") {
                                     var img = td.querySelector('img');
-                                    var button = new mxui.widget.ActionButton({
+                                    var button = new mxui.widget.Button({
                                         caption: self.inlineButtons[i].valueCaption ? td.firstChild.innerHTML : self.inlineButtons[i].caption,
                                         iconUrl: (img && img.src && img.src.match( /[^\/]*\/\/[^\/]*(\/.*)/ )[1]) || self.inlineButtons[i].icon,
                                         // Why does this onlick not work? Work arround with liveConnect
