@@ -137,9 +137,7 @@ define(["dojo/_base/declare", "dojo/aspect", "dojo/_base/event", "dojo/on"], fun
                         applyto: "selection",
                         guids: [rowObject.getGuid()]
                     },
-                    store: {
-                        caller: this.mxform
-                    },
+                    origin: this.mxform,
                     callback: function() {
 
                     },
